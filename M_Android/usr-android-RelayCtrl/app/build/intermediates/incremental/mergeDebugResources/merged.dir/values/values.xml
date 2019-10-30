@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="darkgray">#FF808080</color>
+    <color name="focused">#ffff44ff</color>
+    <color name="pressed">#fff22fff</color>
+    <color name="selected">#fff33fff</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent2">#e0000000</color>
+    <color name="unfocused">#cccccccc</color>
+    <color name="white">#ffffffff</color>
+    <drawable name="darkgray">#808080FF </drawable>
+    <drawable name="white">#FFFFFFFF</drawable>
+    <string name="app_name">Network Relay</string>
+    <string name="ipset">ip port setting：</string>
+    <string name="lbAbout">about</string>
+    <string name="lbCancle">cancle</string>
+    <string name="lbQuit">quit</string>
+    <string name="lbRelay">relay</string>
+    <string name="lbSave">save</string>
+    <string name="lbSet">settings</string>
+    <string name="lblog1">"    Jinan USR IOT Technology Co., Ltd. work on IOT(internet of things), have deepth advantage in serial to etherent convert products, we develpment and manufacture RS232/RS485/TTL UART to Ethernet/WIFI/GPRS convert products."</string>
+    <string name="lblog2">"    This program is for test TCPIP socket commulication, please do not directly use in commercial use."</string>
+    <string name="lbmail">Email:tec@usr.cn</string>
+    <string name="lbnamerel">named relay</string>
+    <string name="lbnet">http://www.usr.cn</string>
+    <string name="lbtel">8653155507297</string>
+    <string name="msg1">connect time out</string>
+    <string name="msg2">connect success</string>
+    <string name="msg3">devices disconnect</string>
+    <string name="msg4">send success</string>
+    <string name="msg5">devices disconnect,please connect again</string>
+    <string name="msg6">invalid ip</string>
+    <string name="msg7">invalid port</string>
+    <string name="relAllOff">all off</string>
+    <string name="relAllOn">all on</string>
+    <string name="relOff">off</string>
+    <string name="relOn">on</string>
+    <string name="relay1">realy1</string>
+    <string name="relay2">realy2</string>
+    <string name="relay3">realy3</string>
+    <string name="relay4">realy4</string>
+    <string name="setSuccess">set success</string>
+    <string name="state0">off</string>
+    <string name="state1">on</string>
+    <string name="state2">unknow</string>
+    <string name="tileQuit">"are you sure to quit？"</string>
+    <style name="AnimationPreview">  
+        <item name="android:windowEnterAnimation">@anim/popanim_in</item> 
+        <item name="android:windowExitAnimation">@anim/popanim_out</item>
+    </style>
+    <style name="BlueText">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="CustomButton" parent="@android:style/Widget.Button"> 
+		<!-- 水平、垂直居中 --> 
+		<item name="android:gravity">center_vertical|center_horizontal</item> 
+		<!-- 字体颜色 --> 
+		<item name="android:textColor">#FFFFFFFF</item> 
+		<!-- 指定文本阴影的颜色，需要与shadowRadius一起使用 --> 
+		<item name="android:shadowColor">#FF000000</item> 
+		<!-- 设置阴影横向坐标开始的位置 --> 
+		<item name="android:shadowDx">0</item> 
+		<!-- 设置阴影纵向坐标开始的位置 --> 
+		<item name="android:shadowDy">-1</item> 
+		<!-- 设置阴影的半径，设置为0.1就变成文本的颜色了 --> 
+		<item name="android:shadowRadius">0.2</item> 
+		<item name="android:textSize">16sp</item> 
+		<item name="android:textStyle">bold</item> 
+		 <!-- 这里引用定义的按钮样式 --> 
+
+		<item name="android:focusable">true</item> 
+		<item name="android:clickable">true</item> 
+	</style>
+    <style name="MyTheme" parent="@android:style/Theme">
+  <item name="android:textSize">20sp</item>
+  <item name="android:textColor">#FF0000FF</item>
+  <item name="android:hint">"load from style 3"</item>
+  <item name="android:textStyle">bold|italic</item>
+ </style>
+    <style name="PopupAnimation" parent="android:Animation">
+		<item name="android:windowEnterAnimation">@anim/ani_in</item>
+		<item name="android:windowExitAnimation">@anim/ani_out</item>
+	</style>
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@color/transparent</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">false</item> >
+    </style>
+    <style name="my_style_1">
+  <item name="android:hint">load from style 1</item>
+ </style>
+    <style name="my_style_2" parent="@style/my_style_1">
+  <!-- 定义与指定View相关的若干属性 -->
+  <item name="android:textSize">30sp</item>
+  <item name="android:textColor">#FFFF0000</item>
+  <item name="android:hint">load from style 2</item>
+ </style>
+    <style name="my_style_3" parent="@android:style/Widget.EditText">
+  <!-- 定义与指定View相关的若干属性 -->
+  <item name="android:hint">"load from style 3"</item>
+  <item name="android:textStyle">bold|italic</item>
+ </style>
+    <style name="mytheme" parent="@android:style/Theme.Light">
+		<item name="android:windowNoTitle"> true </item>
+	</style>
+</resources>

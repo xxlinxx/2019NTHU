@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>--TNUA NewMedia YSL--</title>
+    <LINK REL=StyleSheet HREF="css/style.css" TYPE="text/css" MEDIA=screen>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.6.15.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script type="text/javascript" src="js/ws.js"></script>
+    <script src="js/xlinx.js"></script>
+    </head>
+
+    <body>
+        <div data-role="page" id="index" data-theme="b">
+            <div data-role="header">
+                <h1 id="titleX">TNUA NewMedia</h1>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-inset="true" data-filter="false">
+                   
+                    <li id="drums" class="button">
+                        <a class="ui-btn" href="#instrumentSystemStatus">
+                            <!-- <i class="fas fa-spin fa-cloud"></i> -->
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                            <i class="fas fa-angle-double-right"></i>
+                            <div class="typeGreen type_square"></div>
+                            <font color="#fff"> WEB |  </font>
+                             <div class="typeGreen type_square"></div> 
+                            <font color="#fff"> DB |  </font>
+                            <div class="typeYellow type_square"></div>
+                            <font color="#fff"> DB2 |  </font>
+                            <div class="typeGREEN2RED_infinite type_square"></div>
+                            <font color="#fff"> 時間同步主機</font>
+                        </a>
+                    </li>
+
+                    <li id="drums" class="button">
+                        <a class="ui-btn" href="#instrument0">
+                            <!-- <i class="fas fa-ambulance"></i> -->
+                            <i class="fas fa-cloud"></i>
+                            <i class="fas fa-angle-double-right"></i>
+                            <font color="#fff"> WS: </font>
+                            <div id="statusLEDAll" class="typeGREEN2RED"></div>
+
+                            <font color="#fff"> | <i class="fab fa-apple"></i>:</font>
+                            <div id="statusLEDSS" class="typeGREEN2RED"></div>
+
+                            <font color="#fff"> |  RPi-A </font>
+                            <div id="statusLED_A" class="typeGREEN2RED"></div>
+                            
+                            <font color="#fff"> RPi-B </font>
+                            <div id="statusLED_B" class="typeGREEN2RED"></div>
+                            
+                            <font color="#fff"> RPi-C </font>
+                            <div id="statusLED_C" class="typeGREEN2RED"></div>
+                            
+                        </a>
+                    </li>
+ 
+                    <li id="drums" class="button">
+                        <a class="ui-btn" href="#instrument0">
+                            <i class="fas fa-child fa-spin"></i>
+                            <i class="fas fa-angle-double-right"></i>
+
+                            <font color="#fff">  A </font>
+                            
+                            <i class="fas fa-users"></i> <font color="#1E90FF" id="pA">0</font>
+                            <font color="#fff"> / B </font>
+                            <i class="fas fa-users"></i> <font color="#1E90FF" id="pB">0</font>
+                            <font color="#fff"> / C </font>
+                            
+                            <i class="fas fa-users"></i> <font color="#1E90FF" id="pC">0</font>
+                            <i class="fas fa-volume-up"></i>
+
+
+
+                        </a>
+                    </li>
+
+
+                    <li id="instrument1" class="button">
+                    </hr>
+                </li>
+                
+                <li id="instrument1" class="button">
+                </hr>
+            </li>
+
+            <li id="cue/all/start" class="wsbtn">
+                
+                <a href="#instrument3">1. 傳送到電腦（廣播訊息Rpi,Mac,mobilePhone,AWS） <i class="far fa-lightbulb"></i><i class="far fa-lightbulb"></i><i class="far fa-lightbulb"></i></a>
+            </li>
+            <li id="cue/pc/color" class="wsbtn">
+                <a href="#instrument3">2. 傳送到電腦（改變顏色） <i class="far fa-lightbulb"></i><i class="far fa-lightbulb"></i><i class="far fa-lightbulb"></i></a>
+            </li>
+            <li id="cue/pc/say/TNUA" class="wsbtn">
+                <a href="#instrument3">3. 傳送到電腦（說話） <i class="fas fa-lightbulb"></i><i class="fas fa-lightbulb"></i><i class="fas fa-lightbulb"></i></a>
+            </li>
+            <li id="cue/pc/say/newmedia" class="wsbtn">
+                <a href="#instrument3">3. 傳送到電腦（說話） <i class="fas fa-lightbulb"></i><i class="fas fa-lightbulb"></i><i class="fas fa-lightbulb"></i></a>
+            </li>
+            <li id="cue/rpi/led/toggle" class="wsbtn">
+                <a href="#instrument3">4. 傳送到RPI（LED） <i class="fas fa-lightbulb"></i><i class="fas fa-lightbulb"></i><i class="fas fa-lightbulb"></i></a>
+            </li>
+            <li id="drums" class="button">
+                <div class="ui-field-contain">
+                <label for="textarea">5. INPUT Textarea:</label>
+                  <textarea name="textarea" id="textareaX"></textarea>
+
+                <div class="ui-field-contain">
+                <input type="button" data-icon="delete" data-iconpos="notext" value="Icon only">
+                </div>
+
+            </li>
+            <li id="drums" class="button">
+                 <iframe width="100%" src="rec.html"></iframe>
+            </li>
+            <hr>
+            <div class="ui-field-contain">
+  <label for="slider-2">Input slider:</label>
+  <input type="range" onchange="valueChanged()" name="slider" class="sliders" id="cue/sliderX" value="25" min="0" max="100">
+</div>
+
+        </ul>
+        <div data-role="collapsible" data-theme="b" data-content-theme="b" data-collapsed="false" data-icon="cloud">
+    <h4>人流走勢圖</h4>
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+</div>
+        <a>Engineering Mode: <font color="green">ON</font></a>
+
+        <ul data-role="listview" data-inset="true" data-filter="false">            
+            <li id="reboot" class="button">
+                <a href="#instrument5">軟體更新｜重新開機</a>
+            </li>
+        </ul>
+        
+        <div data-role="collapsible" data-theme="b" data-content-theme="b">
+
+            <h4>Server Log</h4>
+            <p>
+                <div id="output">x</div>
+            </p>
+        </div>
+
+
+    </div>
+    <!-- /content -->
+
+    <div data-role="footer">
+        <table>
+            <tr>
+                <td>
+                    <a href="about.html" data-rel="dialog" data-transition="flip">說明！</a>
+                </td>
+
+                
+            </tr>
+        </table>
+    </div>
+    <div id="fb-root"></div>
+</div>
+
+
+
+<div data-role="page" id="instrument99" data-theme="b">
+    <div data-role="header">
+        <h1>開幕點燈區</h1>
+    </div>
+    <!-- /header -->
+    <div data-role="content">
+        <div>
+            <div data-icon="delete" data-role="button" data-theme="a" id="cue/fade2max/start" class="wsbtn">
+
+                <img width="80%" src="../SoundCube_1128_fat.jpg">
+            </br>__○_全亮_○__
+            </div>
+        <div data-icon="delete" data-role="button" data-theme="a" id="cue/fade2black/start" class="wsbtn">
+
+                <img class="inverted" width="80%" src="../SoundCube_1128_fat.jpg">
+        </br>__●_全黑_●__
+    </div>
+    <select name="flip-3" id="flip-3" data-role="slider" data-theme="e">
+        <option id="SOLAR/CHGALL/OFF/" value="no">全黑</option>
+        <option id="SOLAR/CHGALL/ON/" value="yes">全亮</option>
+    </select> 
+
+</div>
+<!-- buttons -->
+
+<!-- /content -->
+</div>
+
+</body>
+
+</html>

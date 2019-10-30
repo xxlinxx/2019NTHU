@@ -1,0 +1,18 @@
+<html>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+
+		$( document ).ready(function() {
+   			 console.log( "ready!" );
+	 		$( "#target" ).click(function() {
+  			// alert( "Handler for .click() called." );
+  			$( "#output" ).fadeOut( "slow" ).html("<p>haha</p>").fadeIn( "slow" );
+			});
+		});
+	</script>
+<body>
+	<div id="target">Click here</div>
+	<div id="output"> im output</div>
+</body>
+
+</html>

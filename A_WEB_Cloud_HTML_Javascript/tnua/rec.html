@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="tnua">
+  <meta name="copyright" content="tnua">
+  <title>獲取錄音資訊 </title>
+  <script src="js/recoder.js"></script>
+  <style>
+  #d {
+    height: 255px;
+  }
+  #d:after{
+    content:'';
+    display: inline-block;
+    height:255px;
+    width:px;
+  }
+  
+  #d div {
+    display: inline-block;
+    width: 2px;
+    background: #a00;
+    margin: 0 0 0 1px;
+    vertical-align: bottom;
+  }
+  ul { 
+    list-style: none; 
+  }
+  #recordingslist audio { 
+    display: block; margin-bottom: 10px; 
+  }
+  </style>
+</head>
+
+<body>  
+  <button id="p">record</button>
+  <button id="s" disabled>stop</button>
+
+  <div id="d"></div>
+  
+  <h2>Recordings</h2>
+  <ul id="recordingslist"></ul>
+
+  <script>
+  window.onload = function(){
+
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+  window.URL = window.URL || window.webkitURL;
+  var recorder;
+
+  var d = document.getElementById('d');
+  for(var i=0; i<256; i++){
+    d.innerHTML += '<div></div>';
+  }
+  var dd = document.querySelectorAll('#d div');
+
+  var s = document.getElementById('s');
+  var p = document.getElementById('p');
+  var timer;
+  var context = new AudioContext();
+
+  navigator.getUserMedia({audio: true}, function(stream) {
+    var microphone = context.createMediaStreamSource(stream);
+    var analyser = context.createAnalyser();
+    microphone.connect(analyser);
+    //analyser.connect(context.destination);
+    analyser.fftSize = 2048;
+    var bufferLength = analyser.frequencyBinCount;
+    var dataArray = new Uint8Array(analyser.fftSize);
+    analyser.getByteFrequencyData(dataArray);
+
+    s.onclick = function(){
+      clearTimeout(timer);
+      p.disabled = false;
+      s.disabled = true;
+      recorder.stop();
+      createDownloadLink();
+      recorder.clear();
+    };
+
+    p.onclick = function(){
+      recorder = new Recorder(microphone);
+      recorder.record();
+      p.disabled = true;
+      s.disabled = false;
+      update();
+    };
+
+
+    function update(){
+      console.log(dataArray);
+      analyser.getByteFrequencyData(dataArray);
+      for(var j=0; j<256; j++){
+        dd[j].style.height = dataArray[j]+'px';
+        dd[j].style.background = 'rgba('+(255-j)+','+j*2+',0,1)';
+      }
+      timer = setTimeout(update,20);
+    }
+
+    function createDownloadLink(){
+      recorder.exportWAV(function(blob) {
+        var url = URL.createObjectURL(blob);
+        var li = document.createElement('li');
+        var au = document.createElement('audio');
+        var hf = document.createElement('a');
+        
+        au.controls = true;
+        au.src = url;
+        hf.href = url;
+        hf.download = new Date().toISOString() + '.wav';
+        hf.innerHTML = hf.download;
+        li.appendChild(au);
+        li.appendChild(hf);
+        recordingslist.appendChild(li);
+      });
+    }
+
+  }, function(){
+    console.log('error');
+  });
+  };
+
+
+  </script>
+
+  <style>
+  #info {
+    position: fixed;
+    z-index: 999;
+    bottom: 20px;
+    left: 0px;
+    background: #222;
+    padding: 20px 30px;
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, .5) 0 0 10px;
+    border-radius: 0 5px 5px 0;
+  }
+  
+  #info a {
+    color: #0bf;
+    transition: .2s;
+  }
+  
+  #info a:hover {
+    color: #6df;
+  }
+  </style>
+  <!-- <div id="info">相關參考：<a id="infoLink" href="#" target="_blank"></a></div>
+  <script>
+    var href = location.href;
+    var page = href.split("demo/");
+    var name = page[1].split("-demo")[0];
+    var title = document.querySelector('title').innerHTML;
+    document.getElementById('infoLink').setAttribute('href', '/articles/' + name + '.html');
+    document.getElementById('infoLink').innerHTML = title.split("demo")[0];
+  </script> -->
+</body>
+</html>
+
